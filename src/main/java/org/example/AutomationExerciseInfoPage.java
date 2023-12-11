@@ -2,7 +2,9 @@ package org.example;
 
 import com.shaft.driver.SHAFT;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
@@ -41,13 +43,21 @@ public class AutomationExerciseInfoPage {
 
     }
     public void FullInformationDetails(String PleaseenteryourPassword, String Chooseyourbirthday , String Choosebirthmonth , String Choosebirthyear){
-      //  driver.element().click(By.xpath("/html/body/ins[2]/div[1]//ins/span/svg/path"));
+
+       // NoSuchElementException = new driver.element().click(By.xpath("/html/body/ins[2]/div[1]//ins/span/svg/path"));
         driver.element().click(GenderType);
         driver.element().type(password, PleaseenteryourPassword);
-        driver.element().click(days);
-        driver.element().click(months);
+       /* try {
+By adv = new driver.element(By.xpath("/html/body/ins[2]/div[1]//ins/span/svg/path"));
+            adv.click(By.xpath("/html/body/ins[2]/div[1]//ins/span/svg/path"));
+        }
+        catch(NoSuchElementException e) {
+            System.out.println("could not find element todo1");
+        }*/
+        driver.element().select(days, Chooseyourbirthday);
+        driver.element().select(months, Choosebirthmonth);
        //drpCo.selectByVisibleText(Choosebirthmonth);
-        driver.element().click(years);
+        driver.element().select(years, Choosebirthyear);
        // drpCou.selectByVisibleText(Choosebirthyear);
     }
 
@@ -67,7 +77,7 @@ public class AutomationExerciseInfoPage {
         driver.element().type(CompanyName, Company);
         driver.element().type(Address1, address1);
         driver.element().type(Address2, address2);
-        driver.element().click(Country);
+        driver.element().select(Country, country);
        // drpCoo.selectByVisibleText(country);
         driver.element().type(State, state);
         driver.element().type(City, city);
